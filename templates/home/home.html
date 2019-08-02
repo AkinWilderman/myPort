@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>Akin Wilderman</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/old/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"><h4>Akin Wilderman</h4></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link active" href="#">Home</a>
+                <a class="nav-item nav-link" href="{{ 'blog' }}">Blog</a>
+                <a class="nav-item nav-link" href="{{ 'resume' }}">Resume</a>
+                <a class="nav-item nav-link" href="#">Contact Me</a>
+            </div>
+        </div>
+    </nav>
+</header>
+<main role="main">
+    {% for hom in homy.all %}
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Akin Wilderman</h1>
+            <p class="lead text-muted">{{ hom.jumbotron_text }}</p>
+            <p>
+                <a href="#" class="btn btn-primary my-2">Main call to action</a>
+                <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            </p>
+        </div>
+    </section>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <h1 class="text-center">Projects Completed</h1>
+            <hr>
+            <br/>
+            <div class="row">
+                {% for job in jobs.all %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img class="card-img-top" width="100%" height="225" src="{{ job.image.url }}"/>
+                        <div class="card-body">
+                            <p class="card-text">{{ job.description }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a target="_blank" href="{{ job.link }}"> <h5>view</h5></a></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4">
+                <h3 class="text-center">WHO I AM</h3>
+                <h5>{{ hom.statement }}</h5>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <h3 class="text-center">GET IN TOUCH</h3>
+                <address class="text-center">
+                    <strong>AkinkunleGroup, Inc.</strong><br>
+                    {{ hom.address }},<br>
+                    {{ hom.state }}, {{ hom.postal }}, {{ hom.country }}<br>
+                    <abbr title="Phone">P:</abbr> (+234) 806 927 1881
+                </address>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <h3 class="text-center">Get a mail from me</h3>
+                <form>
+                    <div class="form-group col-lg-9 col-md-8 col-sm-10 col-xs-10">
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    </div>
+                    <button type="submit" class="btn btn-default">Send<br>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</main>
+<footer class="text-centre">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <p>Copyright © Akin Wilderman 2019. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src={% static "js/old/jquery-1.11.3.min.js" %}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static "js/old/bootstrap.js"%}></script>
+</body>
+</html>
